@@ -1,1 +1,1 @@
-*Tasks from "Code Wars" and unit tests - "Jest"
+Tasks from "Code Wars" and unit tests - "Jest"
