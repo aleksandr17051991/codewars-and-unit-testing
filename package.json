@@ -1,0 +1,17 @@
+{
+  "name": "code-wars-tasks",
+  "version": "1.0.0",
+  "description": "code wars tasks and unit testing",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "OliferDev",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
