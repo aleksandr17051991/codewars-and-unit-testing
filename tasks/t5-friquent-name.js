@@ -1,0 +1,30 @@
+//Create function friquentName(namesList) that take array with names and find the most used name
+//Example:
+// input: ["Alex", "Bob", "Alex"] - output: "Alex"
+
+const usersList = ['Alex', 'Bob', 'Alex', 'Ann', 'James'];
+const friquentName = (nameList) => {
+  const result = nameList.reduce(
+    (acc, name) => {
+      if (acc.counts[name] === undefined) {
+        acc.counts[name] = 1;
+      } else {
+        acc.counts[name] = acc.counts[name] + 1;
+      }
+
+      if (acc.counts[name] > acc.maxCount) {
+        acc.maxCount = acc.counts[name];
+        acc.friquentName = name;
+      }
+      return acc;
+    },
+    { counts: {}, maxCount: 0, friquentName: '' }
+  );
+  return result.friquentName;
+};
+
+console.log(friquentName(usersList));
+
+module.exports = {
+  friquentName,
+};
