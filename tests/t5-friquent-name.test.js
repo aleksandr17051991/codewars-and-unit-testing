@@ -8,11 +8,6 @@ describe('Correct list of names', () => {
       expectedName: 'Ann',
     },
     {
-      testName: 'Empty array',
-      argument: [],
-      expectedName: 'Your list is empty',
-    },
-    {
       testName: 'value in array - undefined',
       argument: ['Ann', 'John', undefined, null, 'Bob', 'Bob'],
       expectedName: 'Bob',
@@ -21,11 +16,6 @@ describe('Correct list of names', () => {
       testName: 'value in array - null',
       argument: ['Ann', 'John', null, 'Bob', 'Bob'],
       expectedName: 'Bob',
-    },
-    {
-      testName: 'all values in array - undefined and null',
-      argument: [null, undefined, null],
-      expectedName: "Your list doesn't have names",
     },
   ];
 
@@ -38,6 +28,32 @@ describe('Correct list of names', () => {
   });
 });
 
-//разобрать случаи с undefined / null
+//additional validation for list
+describe('Additional checking', () => {
+  const testCases = [
+    {
+      testName: 'Empty array',
+      argument: [],
+      expectedMessage: 'Your list is empty',
+    },
+    {
+      testName: 'all values in array - undefined and null',
+      argument: [null, undefined, null],
+      expectedMessage: "Your list doesn't have names",
+    },
+    {
+      testName: 'Without double names in array',
+      argument: ['Ann', 'John', null, 'Bob', undefined, 'Jack', 'Rocky'],
+      expectedMessage:
+        "There are only different names. Don't find the most used name",
+    },
+  ];
 
-//разобрать случай что все имена разные то ответ приходит кокоето сообщение
+  testCases.forEach((test) => {
+    it(test.testName, () => {
+      const testedFunc = friquentName(test.argument);
+
+      expect(testedFunc).toBe(test.expectedMessage);
+    });
+  });
+});

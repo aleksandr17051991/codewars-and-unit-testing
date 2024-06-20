@@ -32,10 +32,14 @@ const friquentName = (nameList) => {
     { counts: {}, maxCount: 0, friquentName: '' }
   );
 
+  //additional validation (all values are undefined or null)
   if (result.maxCount === 0) {
     return "Your list doesn't have names";
   }
-
+  //additional validation (there aren't double used name)
+  if (result.maxCount < 2) {
+    return "There are only different names. Don't find the most used name";
+  }
   return result.friquentName;
 };
 
