@@ -27,6 +27,7 @@ describe('Oldest book task', () => {
       findOldestYear.mockReturnValue(1944);
       const res = getOldestBook(test.argument);
       expect(res).toBe(test.expectedYear);
+      expect(findOldestYear).toHaveBeenCalledTimes(1);
     });
   });
 });
