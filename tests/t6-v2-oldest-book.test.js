@@ -31,3 +31,47 @@ describe('Oldest book task', () => {
     });
   });
 });
+
+const { getOldestBook } = require('../helpers/examples');
+const { getMinYear } = require('../helpers/functions/func-for-examples');
+
+jest.mock('../helpers/functions/func-for-examples', () => {
+  return {
+    getMinYear: jest.fn(),
+  };
+});
+
+describe('Checking callback - getMinYears', () => {
+  const testCases = [
+    {
+      name: 'Oldest book - 1900',
+      argument: [
+        { title: 'Book1', year: 2019 },
+        { title: 'Book2', year: 1960 },
+        { title: 'Book3', year: 1944 },
+        { title: 'Book4', year: 1960 },
+        { title: 'Book5', year: 1900 },
+      ],
+      callbackArg: [2019, 1960, 1944, 1960, 1900],
+      expectedYear: 1900,
+    },
+    {
+      name: 'Oldest book - 2016',
+      argument: [
+        { title: 'Book1', year: 2016 },
+        { title: 'Book2', year: 2020 },
+      ],
+      callbackArg: [2016, 2020],
+      expectedYear: 2016,
+    },
+  ];
+
+  testCases.forEach((test) => {
+    it(test.name, () => {
+      getOldestBook(test.argument);
+
+      expect(getMinYear).toHaveBeenCalled();
+      expect(getMinYear).toHaveBeenCalledWith(test.callbackArg);
+    });
+  });
+});
