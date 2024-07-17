@@ -24,21 +24,12 @@ describe('Oldest book task', () => {
 
   testCases.forEach((test) => {
     it(test.name, () => {
-      findOldestYear.mockReturnValue(1944);
+      findOldestYear.mockReturnValue(test.expectedYear);
       const res = getOldestBook(test.argument);
       expect(res).toBe(test.expectedYear);
       expect(findOldestYear).toHaveBeenCalledTimes(1);
     });
   });
-});
-
-const { getOldestBook } = require('../helpers/examples');
-const { getMinYear } = require('../helpers/functions/func-for-examples');
-
-jest.mock('../helpers/functions/func-for-examples', () => {
-  return {
-    getMinYear: jest.fn(),
-  };
 });
 
 describe('Checking callback - getMinYears', () => {
@@ -70,8 +61,8 @@ describe('Checking callback - getMinYears', () => {
     it(test.name, () => {
       getOldestBook(test.argument);
 
-      expect(getMinYear).toHaveBeenCalled();
-      expect(getMinYear).toHaveBeenCalledWith(test.callbackArg);
+      expect(findOldestYear).toHaveBeenCalled();
+      expect(findOldestYear).toHaveBeenCalledWith(test.callbackArg);
     });
   });
 });
