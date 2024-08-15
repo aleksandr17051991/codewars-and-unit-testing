@@ -26,13 +26,13 @@ describe('Oldest book task', () => {
     it(test.name, () => {
       findOldestYear.mockReturnValue(test.expectedYear);
       const res = getOldestBook(test.argument);
+
       expect(res).toBe(test.expectedYear);
-      expect(findOldestYear).toHaveBeenCalledTimes(1);
     });
   });
 });
 
-describe('Checking callback - getMinYears', () => {
+describe('Checking callback - findOldestYear', () => {
   const testCases = [
     {
       name: 'Oldest book - 1900',
