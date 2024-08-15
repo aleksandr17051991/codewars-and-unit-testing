@@ -8,6 +8,8 @@
 
 function getGrade() {
   const argList = [...arguments];
+
+  console.log(argList);
   const sum = argList.reduce((acc, rec) => acc + rec);
   const members = argList.length;
   const average = sum / members;
