@@ -47,3 +47,26 @@ describe('Must return "Even" or "Odd"', () => {
     });
   });
 });
+
+describe('Edditional validation', () => {
+  const testErrorCases = [
+    {
+      name: 'Number is MAX_SAFE_INTEGER',
+      argument: Number.MAX_SAFE_INTEGER,
+      expectedError: 'The number is too big',
+    },
+    {
+      name: 'Number is MIN_SAFE_INTEGER',
+      argument: Number.MIN_SAFE_INTEGER,
+      expectedError: 'The number is too small',
+    },
+  ];
+
+  testErrorCases.forEach((test) => {
+    it(test.name, () => {
+      expect(() => {
+        evenOdd(test.argument);
+      }).toThrow(test.expectedError);
+    });
+  });
+});
